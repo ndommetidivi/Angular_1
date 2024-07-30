@@ -1,7 +1,10 @@
+To Deploy Angular Application on nginx server 
+
 To deploy an Angular application on an Nginx server, you'll need to follow these general steps: 
 setting up your environment, building your Angular application, installing and configuring Nginx, and finally deploying the application. Here’s a detailed guide:
 
 Environment Setup 
+Install Dependencies :
 
 Install Node.js and npm
 
