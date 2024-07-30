@@ -111,35 +111,3 @@ Your Angular application should now be accessible via your domain name or server
 
 
 
-
-Clone the Angular Project (Already Cloned):
-
-bash
-Copy code
-# Navigate to the directory where the project is cloned
-cd /opt/Angular_1
-2. Build the Angular Application
-Install Dependencies:
-
-bash
-Copy code
-npm install
-Build the Project for Production:
-
-bash
-Copy code
-ng build --prod
-This command generates a dist folder with your production build, typically named dist/Angular_1.
-3. Configure Nginx
-Install Nginx:
-```bash
-sudo apt install -y nginx
-``` 
-Create a Configuration File for Your Application:
-```bash
-sudo nano /etc/nginx/sites-available/angular_1
-``` 
-
-
-
-
