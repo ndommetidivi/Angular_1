@@ -1,87 +1,145 @@
-Angular Application Deployment on NGINX Server
-This README file provides instructions for deploying an Angular application on an NGINX server.
+To deploy an Angular application on an Nginx server, you'll need to follow these general steps: 
+setting up your environment, building your Angular application, installing and configuring Nginx, and finally deploying the application. Here’s a detailed guide:
 
-Prerequisites
-An Ubuntu server
-sudo privileges
-An Angular application built for production
-Step 1: Install NGINX
- Update the Package Index
-bash
-Copy code
+Environment Setup 
+
+Install Node.js and npm
+
+Ensure that Node.js and npm (Node Package Manager) are installed on your server. These are required for building Angular applications.
+
+Install Node.js:
+
+```bash
 sudo apt update
- Install NGINX
-bash
-Copy code
-sudo apt install nginx -y
- Start and Enable NGINX
-bash
-Copy code
-sudo systemctl start nginx
-sudo systemctl enable nginx
- Verify NGINX Installation
-Open your web browser and navigate to your server's IP address. You should see the NGINX welcome page.
+sudo apt install nodejs
+``` 
+Install npm:
 
-Step 2: Build Your Angular Application
- Navigate to Your Angular Project Directory
-bash
-Copy code
-cd /path/to/your/angular-project
-Build the Angular Application for Production
-bash
-Copy code
-ng build 
-This will create a dist directory with your production-ready application.
+```bash
+  sudo apt install npm
+``` 
+Verify the installations:
 
-Step 3: Configure NGINX
- Remove the Default NGINX Configuration
-bash
-Copy code
-sudo rm /etc/nginx/sites-enabled/default
- Create a New NGINX Configuration File
-bash
-Copy code
-sudo nano /etc/nginx/sites-available/angular-app
-Add the following content:
+```bash
+node -v
+npm -v
+``` 
+Install angular cli 
+```bash
+sudo npm install -g @angular/cli
+``` 
+To check the version of aws cli, enter the below command 
+```bash
+ng version
+``` 
+![Screenshot 2024-07-17 231323](https://github.com/user-attachments/assets/cb1f2461-cb8e-4a71-a099-6c1bac8e367b)
 
-bash
-Copy code
+Now clone the project into opt directory
+```bash
+git clone https://github.com/ndommetidivi/Angular_1.git
+``` 
+![Screenshot 2024-07-17 225133](https://github.com/user-attachments/assets/382830eb-cc96-493c-8c1f-4f926d7d0fd6)
+
+```bash
+cd /opt/Angular_1
+``` 
+Build the Project for Production:
+```bash
+ng build
+``` 
+This command generates a dist folder with your production build, typically named dist/Angular_1.
+
+Configure Nginx
+Install Nginx:
+```bash
+sudo apt install -y nginx
+``` 
+ You are able to see the page in browser like this if nginx installation done successfully:
+
+ ![Screenshot 2024-07-31 003621](https://github.com/user-attachments/assets/c989c5fe-2b79-4461-b215-dc63248ec2b6)
+
+sudo /etc/nginx/sites-available/default 
+```
 server {
-    listen 80;
-    server_name your_server_domain_or_IP;
+        listen 80;
+        listen [::]:80;
 
-    root /var/www/angular-app;
-    index index.html;
+        root /var/www/your_domain/html;
+        index index.html index.htm index.nginx-debian.html;
 
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
+        server_name your_domain www.your_domain;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
 }
-3.3 Create a Symbolic Link to Enable the New Configuration
+``` 
+Replace yourdomain.com with your actual domain name or IP address.
+
+Now copy the dist file into this path 
+```
+sudo cp -r dist/* /var/www/html/
+``` 
+Give the suitable permissions to it.
+```
+sudo chown -R www-data:www-data /var/www/html/
+``` 
+Now change the directory into /var/www/html/ by using the command given below : 
+```
+ cd /var/www/html/
+``` 
+Now Enable the Configuration:
+
+```
+vi /etc/nginx/sites-available/default
+``` 
+Test Nginx Configuration:
+```bash
+     sudo nginx -t
+``` 
+Restart the nginx server
+```
+systemctl restart nginx
+``` 
+Start Nginx
+
+Your Angular application should now be accessible via your domain name or server IP address.
+
+![Screenshot 2024-07-18 001810](https://github.com/user-attachments/assets/dd6063a2-cbf3-4aaa-b9de-2448c8342f1d)
+
+
+
+
+
+
+Clone the Angular Project (Already Cloned):
+
 bash
 Copy code
-sudo ln -s /etc/nginx/sites-available/angular-app /etc/nginx/sites-enabled/
- Test the NGINX Configuration
+# Navigate to the directory where the project is cloned
+cd /opt/Angular_1
+2. Build the Angular Application
+Install Dependencies:
+
 bash
 Copy code
-sudo nginx -t
-Reload NGINX
+npm install
+Build the Project for Production:
+
 bash
 Copy code
-sudo systemctl reload nginx
-Step 4: Deploy Your Angular Application
- Create a Directory for Your Application
-bash
-Copy code
-sudo mkdir -p /var/www/angular-app
- Copy the Build Files to the New Directory
-bash
-Copy code
-sudo cp -r /path/to/your/angular-project/dist/* /var/www/angular-app/
- Set Permissions
-bash
-Copy code
-sudo chown -R www-data:www-data /var/www/angular-app
-Step 5: Access Your Application
-Open your web browser and navigate to your server's IP address or domain. You should see your Angular application.
+ng build --prod
+This command generates a dist folder with your production build, typically named dist/Angular_1.
+3. Configure Nginx
+Install Nginx:
+```bash
+sudo apt install -y nginx
+``` 
+Create a Configuration File for Your Application:
+```bash
+sudo nano /etc/nginx/sites-available/angular_1
+``` 
+
+
+
 
