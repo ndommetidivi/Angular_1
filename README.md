@@ -1,22 +1,22 @@
-To Deploy Angular Application on nginx server 
-
+## Angular Application Deployment 
+ 
 To deploy an Angular application on an Nginx server, you'll need to follow these general steps: 
 setting up your environment, building your Angular application, installing and configuring Nginx, and finally deploying the application. Here’s a detailed guide:
 
-Environment Setup 
+## Environment Setup 
 Install Dependencies :
 
 Install Node.js and npm
 
 Ensure that Node.js and npm (Node Package Manager) are installed on your server. These are required for building Angular applications.
 
-Install Node.js:
+## Install Node.js:
 
 ```bash
 sudo apt update
 sudo apt install nodejs
 ``` 
-Install npm:
+## Install npm:
 
 ```bash
   sudo apt install npm
@@ -27,17 +27,20 @@ Verify the installations:
 node -v
 npm -v
 ``` 
-Install angular cli 
+## Install angular cli 
+
 ```bash
 sudo npm install -g @angular/cli
 ``` 
 To check the version of aws cli, enter the below command 
+
 ```bash
 ng version
 ``` 
 ![Screenshot 2024-07-17 231323](https://github.com/user-attachments/assets/cb1f2461-cb8e-4a71-a099-6c1bac8e367b)
 
 Now clone the project into opt directory
+
 ```bash
 git clone https://github.com/ndommetidivi/Angular_1.git
 ``` 
@@ -47,6 +50,7 @@ git clone https://github.com/ndommetidivi/Angular_1.git
 cd /opt/Angular_1
 ``` 
 Build the Project for Production:
+
 ```bash
 ng build
 ``` 
@@ -54,12 +58,13 @@ This command generates a dist folder with your production build, typically named
 
 Configure Nginx
 Install Nginx:
+
 ```bash
 sudo apt install -y nginx
 ``` 
  You are able to see the page in browser like this if nginx installation done successfully:
 
- ![Screenshot 2024-07-31 003621](https://github.com/user-attachments/assets/c989c5fe-2b79-4461-b215-dc63248ec2b6)
+![Screenshot 2024-07-31 003621](https://github.com/user-attachments/assets/c989c5fe-2b79-4461-b215-dc63248ec2b6)
 
 sudo /etc/nginx/sites-available/default 
 ```
@@ -97,6 +102,7 @@ Now Enable the Configuration:
 vi /etc/nginx/sites-available/default
 ``` 
 Test Nginx Configuration:
+
 ```bash
      sudo nginx -t
 ``` 
