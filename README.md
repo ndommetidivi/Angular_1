@@ -1,4 +1,4 @@
-## Angular Application Deployment 
+##Angular Application Deployment 
  
 To deploy an Angular application on an Nginx server, you'll need to follow these general steps: 
 setting up your environment, building your Angular application, installing and configuring Nginx, and finally deploying the application. Here’s a detailed guide:
@@ -28,19 +28,16 @@ node -v
 npm -v
 ``` 
 ## Install angular cli 
-
 ```bash
 sudo npm install -g @angular/cli
 ``` 
 To check the version of aws cli, enter the below command 
-
 ```bash
 ng version
 ``` 
 ![Screenshot 2024-07-17 231323](https://github.com/user-attachments/assets/cb1f2461-cb8e-4a71-a099-6c1bac8e367b)
 
 Now clone the project into opt directory
-
 ```bash
 git clone https://github.com/ndommetidivi/Angular_1.git
 ``` 
@@ -49,15 +46,13 @@ git clone https://github.com/ndommetidivi/Angular_1.git
 ```bash
 cd /opt/Angular_1
 ``` 
-Build the Project for Production:
-
+## Build the Project for Production:
 ```bash
 ng build
 ``` 
 This command generates a dist folder with your production build, typically named dist/Angular_1.
 
-Configure Nginx
-Install Nginx:
+## Install Nginx:
 
 ```bash
 sudo apt install -y nginx
@@ -66,7 +61,10 @@ sudo apt install -y nginx
 
 ![Screenshot 2024-07-31 003621](https://github.com/user-attachments/assets/c989c5fe-2b79-4461-b215-dc63248ec2b6)
 
-sudo /etc/nginx/sites-available/default 
+## Configure Nginx
+```bash
+sudo /etc/nginx/sites-available/default     
+``` 
 ```
 server {
         listen 80;
@@ -101,10 +99,9 @@ Now Enable the Configuration:
 ```
 vi /etc/nginx/sites-available/default
 ``` 
-Test Nginx Configuration:
-
+## Test Nginx Configuration:
 ```bash
-     sudo nginx -t
+sudo nginx -t
 ``` 
 Restart the nginx server
 ```
