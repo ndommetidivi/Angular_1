@@ -1,4 +1,4 @@
-##Angular Application Deployment 
+## Angular Application Deployment 
  
 To deploy an Angular application on an Nginx server, you'll need to follow these general steps: 
 setting up your environment, building your Angular application, installing and configuring Nginx, and finally deploying the application. Here’s a detailed guide:
@@ -101,7 +101,7 @@ vi /etc/nginx/sites-available/default
 ``` 
 ## Test Nginx Configuration:
 ```bash
-sudo nginx -t
+     sudo nginx -t
 ``` 
 Restart the nginx server
 ```
